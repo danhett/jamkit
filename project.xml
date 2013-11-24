@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	
+	<meta title="JamKit" package="com.danhett.jamkit" version="1.0.0" company="Dan Hett" />
+	<app main="Main" path="deploy" file="JamKit" />
+	
+	<source path="src" />
+	
+	<haxelib name="openfl" />
+	
+	<assets path="assets" rename="assets" exclude="openfl.svg" />
+	<icon path="assets/openfl.svg" />
+	
+</project>

@@ -2,6 +2,7 @@
 bin/
 bin-debug/
 bin-release/
+deploy/
 
 # Other files and folders
 .settings/
