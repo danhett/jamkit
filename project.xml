@@ -2,13 +2,17 @@
 <project>
 	
 	<meta title="JamKit" package="com.danhett.jamkit" version="1.0.0" company="Dan Hett" />
+	
 	<app main="com.danhett.Main" path="deploy" file="JamKit" />
+	
+	<window width="800" height="600" fps="60" background="0x000000" />
 	
 	<source path="src" />
 	
 	<haxelib name="openfl" />
 	
 	<assets path="assets" rename="assets" exclude="openfl.svg" />
+	
 	<icon path="assets/openfl.svg" />
 	
 </project>

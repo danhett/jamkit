@@ -1,15 +1,15 @@
-JamKit
-======
+haXe gamejam kit
+================
 
 A quick and dirty gamejam kit that handles the boring crap I don't want to do at every jam.
 
 Built in haXe via OpenFL 1.1
 
-Includes:
+This framework will eventually include:
 - Simple scene management
 - Audio handling
-- Some quick math bits (collision handling etc)
-- Debug handling
-
-Todo:
-- everything else ever
+- Input handling (keys/gamepad support)
+- Math/string utils etc
+- Entity/pooling stuff
+- Some visual stuff from old games (particles etc)
+- Animation helpers
