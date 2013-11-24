@@ -2,7 +2,7 @@
 <project>
 	
 	<meta title="JamKit" package="com.danhett.jamkit" version="1.0.0" company="Dan Hett" />
-	<app main="Main" path="deploy" file="JamKit" />
+	<app main="com.danhett.Main" path="deploy" file="JamKit" />
 	
 	<source path="src" />
 	
