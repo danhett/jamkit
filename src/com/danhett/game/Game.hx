@@ -90,7 +90,7 @@ class Game extends Sprite
 	 */
 	private function createGame():Void
 	{
-		
+		sceneManager.changeScene("intro");
 	}
 	
 	/**
