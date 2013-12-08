@@ -1,6 +1,6 @@
 package com.danhett.scenes;
 
-import com.danhett.Main;
+import com.danhett.game.Game;
 import flash.display.Sprite;
 
 class SceneManager extends Sprite 
@@ -16,6 +16,6 @@ class SceneManager extends Sprite
 	{
 		trace("scene manager added!");
 		
-		Main.Instance().testFunction();
+		Game.Instance().testFunction();
 	}
 }
