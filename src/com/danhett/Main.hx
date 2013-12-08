@@ -3,58 +3,73 @@ package com.danhett;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
 import flash.display.Sprite;
+import flash.events.Event;
 import flash.events.MouseEvent;
-
-@:bitmap("assets/test.png") class Image extends BitmapData {}
+import com.danhett.audio.AudioManager;
+import com.danhett.scenes.SceneManager;
+import com.danhett.ui.Controls;
 
 class Main extends Sprite 
 {	
-	inline private static var DEBUG = false;
+	private static var DEBUG:Bool = false;
+	private var prepStep:Int = 0;
+	
+	private static var self_reference:Main;
+	public static function Instance():Main { return self_reference; }
 	
 	public function new() 
 	{	
 		super();
-		
+				
 		init();
+	}
+	
+	public function testFunction():Void
+	{
+		trace("works");
 	}
 	
 	private function init():Void
 	{
-		var bitmap = new Bitmap (new Image (0, 0));
-		addChild(bitmap);
+		self_reference = this;
+		
+		updateStep();
 	}
 	
-	private var prepStep:Int = 1;
 	private function updateStep():Void
 	{
-		// TODO: step through each setup phase and fire a completion event once the framework is fully initialised
-		
-		/* 
-		createScenes();
-		
-		createControls();
-		
-		createAudio();
-		*/
+		switch(++prepStep)
+		{
+			case 1: createScenes();
+			case 2: createControls();
+			case 3: createAudio();
+			case 4: start();
+		}
 	}
 	
 	private function createScenes():Void
 	{
-		// TODO: scene manager should go here, allowing quick state switching
+		addChild(new SceneManager());
+		
+		updateStep();
 	}
 	
 	private function createControls():Void
 	{
-		// TODO: key/pad listeners
+		addChild(new Controls());
+		
+		updateStep();
 	}
 	
 	private function createAudio():Void
 	{
-		// TODO: standard audio manager
+		addChild(new AudioManager());
+		
+		updateStep();
 	}
 	
-	private function frameworkReady():Void
+	private function start():Void
 	{
-		// game entry point
+		trace("START!");
 	}
 }
