@@ -12,11 +12,13 @@ class Debug extends Sprite
 	
 	public static function log(msg:String):Void
 	{
-		trace(msg);
+		if(Game.Instance().DEBUG)
+			trace(msg);
 	}
 	
 	public static function warn(msg:String):Void
 	{
-		trace("WARNING! " + msg);
+		if(Game.Instance().DEBUG)
+			trace("WARNING! " + msg);
 	}
 }

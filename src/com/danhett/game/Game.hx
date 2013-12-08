@@ -5,18 +5,22 @@ import flash.display.BitmapData;
 import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.MouseEvent;
+import com.danhett.assets.AssetManager;
 import com.danhett.audio.AudioManager;
+import com.danhett.debug.Debug;
 import com.danhett.events.GameEvent;
 import com.danhett.scenes.SceneManager;
 import com.danhett.ui.Controls;
 
 class Game extends Sprite 
 {	
-	private static var DEBUG:Bool = false;
+	public var DEBUG:Bool = true;
+	
 	private var prepStep:Int = 0;
 	private var sceneManager:SceneManager;
 	private var controls:Controls;
 	private var audio:AudioManager;
+	private var assets:AssetManager;
 		
 	public function new() 
 	{	
@@ -39,7 +43,8 @@ class Game extends Sprite
 			case 1: createScenes();
 			case 2: createControls();
 			case 3: createAudio();
-			case 4: start();
+			case 4: createAssets();
+			case 5: start();
 		}
 	}
 	
@@ -73,6 +78,16 @@ class Game extends Sprite
 		audio.init();
 	}
 	
+	private function createAssets():Void
+	{
+		assets = new AssetManager();
+		addChild(assets);
+		
+		assets.addEventListener(GameEvent.COMPONENT_READY, updateStep);
+		assets.addEventListener(GameEvent.COMPONENT_FAILED, haltInit);
+		assets.init();
+	}
+	
 	private function start():Void
 	{
 		sceneManager.removeEventListener(GameEvent.COMPONENT_READY, updateStep);
@@ -90,6 +105,8 @@ class Game extends Sprite
 	 */
 	private function createGame():Void
 	{
+		Debug.log("Framework ready! Let's do it.");
+		
 		sceneManager.changeScene("intro");
 	}
 	
