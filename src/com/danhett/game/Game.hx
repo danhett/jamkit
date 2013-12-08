@@ -6,6 +6,7 @@ import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.MouseEvent;
 import com.danhett.audio.AudioManager;
+import com.danhett.events.GameEvent;
 import com.danhett.scenes.SceneManager;
 import com.danhett.ui.Controls;
 
@@ -13,6 +14,9 @@ class Game extends Sprite
 {	
 	private static var DEBUG:Bool = false;
 	private var prepStep:Int = 0;
+	private var sceneManager:SceneManager;
+	private var controls:Controls;
+	private var audio:AudioManager;
 		
 	public function new() 
 	{	
@@ -28,7 +32,7 @@ class Game extends Sprite
 		updateStep();
 	}
 	
-	private function updateStep():Void
+	private function updateStep(e:GameEvent = null):Void
 	{
 		switch(++prepStep)
 		{
@@ -41,37 +45,63 @@ class Game extends Sprite
 	
 	private function createScenes():Void
 	{
-		addChild(new SceneManager());
+		sceneManager = new SceneManager();
+		addChild(sceneManager);
 		
-		updateStep();
+		sceneManager.addEventListener(GameEvent.COMPONENT_READY, updateStep);
+		sceneManager.addEventListener(GameEvent.COMPONENT_FAILED, haltInit);
+		sceneManager.init();		
 	}
 	
 	private function createControls():Void
 	{
-		addChild(new Controls());
+		controls = new Controls();
+		addChild(controls);
 		
-		updateStep();
+		controls.addEventListener(GameEvent.COMPONENT_READY, updateStep);
+		controls.addEventListener(GameEvent.COMPONENT_FAILED, haltInit);
+		controls.init();
 	}
 	
 	private function createAudio():Void
 	{
-		addChild(new AudioManager());
+		audio = new AudioManager();
+		addChild(audio);
 		
-		updateStep();
+		audio.addEventListener(GameEvent.COMPONENT_READY, updateStep);
+		audio.addEventListener(GameEvent.COMPONENT_FAILED, haltInit);
+		audio.init();
 	}
 	
-	// Game entry point
 	private function start():Void
 	{
-		trace("START!");
+		sceneManager.removeEventListener(GameEvent.COMPONENT_READY, updateStep);
+		sceneManager.removeEventListener(GameEvent.COMPONENT_FAILED, haltInit);
+		controls.removeEventListener(GameEvent.COMPONENT_READY, updateStep);
+		controls.removeEventListener(GameEvent.COMPONENT_FAILED, haltInit);
+		audio.removeEventListener(GameEvent.COMPONENT_READY, updateStep);
+		audio.removeEventListener(GameEvent.COMPONENT_FAILED, haltInit);
+		
+		createGame();
 	}
 	
-	public function testFunction():Void
+	/**
+	 * Game entry point - everything's initialised successfully
+	 */
+	private function createGame():Void
 	{
-		trace("LOL");
+		
 	}
 	
-	// DIRTY SINGLETON
+	/**
+	 * Game failure - something screwed up
+	 */
+	private function haltInit(e:GameEvent):Void
+	{
+		trace("INITIALISATION FAILED!");
+	}
+	
+	// filthy singleton
 	private static var self_reference:Game;
 	public static function Instance():Game { return self_reference; }
 }

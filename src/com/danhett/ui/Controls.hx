@@ -1,18 +1,19 @@
 package com.danhett.ui;
 
+import com.danhett.game.Game;
+import com.danhett.events.GameEvent;
 import flash.display.Sprite;
 
 class Controls extends Sprite 
 {		
 	public function new() 
 	{	
-		super();
-		
-		init();
+		super();		
 	}
 	
-	private function init():Void
+	public function init():Void
 	{
-		trace("controls added!");
+		trace("Controls ready");
+		this.dispatchEvent(new GameEvent(GameEvent.COMPONENT_READY));
 	}
 }

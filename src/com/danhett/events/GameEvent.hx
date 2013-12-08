@@ -1,13 +1,15 @@
 package com.danhett.events;
 
-import flash.display.Sprite;
+import flash.events.Event;
 
-class SceneManager extends Sprite 
+class GameEvent extends Event 
 {
-	inline public static var FRAMEWORK_READY:String = "framework_ready";
+	public static var COMPONENT_READY:String 	= "component_ready";
+	public static var COMPONENT_FAILED:String 	= "component_failed";
+	public static var GAME_READY:String 		= "game_ready";
 			
-	public function new() 
+	public function new(type:String, bubbles:Bool = false, cancelable:Bool = false)
 	{	
-		super();
+		super(type, bubbles, cancelable);
 	}
 }
