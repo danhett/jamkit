@@ -9,8 +9,6 @@ import flash.display.BitmapData;
 import flash.display.Sprite;
 import flash.events.MouseEvent;
 
-@:bitmap("assets/intro.png") class TheImage extends BitmapData {}
-
 class IntroScene extends Scene 
 {			
 	public function new() 
@@ -22,7 +20,7 @@ class IntroScene extends Scene
 
     private function init():Void
     {
-        var bitmap:Bitmap = new Bitmap (new TheImage (0, 0));
+        var bitmap:Bitmap = Game.Instance().assets.getBitmap("IntroImage");
         bitmap.x = 400;
         bitmap.y = 200;
 

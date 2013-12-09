@@ -6,9 +6,8 @@ A quick and dirty gamejam kit that handles the framework stuff I don't want to d
 Built in haXe via OpenFL 1.1
 
 TODO:
-- log levels / disable debug 
-- scene management stuff
-- entity system
-- common math/physics stuff
+- enhance scene management so scenes can be saved, currently destroys every time
+- decent entity system (with pooling)
+- drop in common math/physics stuff
 - audio handling
 - controller code
