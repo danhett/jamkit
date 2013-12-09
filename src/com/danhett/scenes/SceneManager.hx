@@ -6,7 +6,10 @@ import com.danhett.events.GameEvent;
 import flash.display.Sprite;
 
 class SceneManager extends Sprite 
-{		
+{
+	private var holder:Sprite;
+    private var toKill:Scene;
+			
 	public function new() 
 	{	
 		super();		
@@ -14,6 +17,9 @@ class SceneManager extends Sprite
 	
 	public function init():Void
 	{
+		holder = new Sprite();
+		addChild(holder);
+		
 		Debug.log("SceneManager ready");
 		this.dispatchEvent(new GameEvent(GameEvent.COMPONENT_READY));
 	}
@@ -22,18 +28,29 @@ class SceneManager extends Sprite
 	{
 		Debug.log("Switching scene to " + scene);
 		
-		/*
+		destroyCurrentScene();
+		
 		switch(scene)
 		{
 			case "intro": 
-				trace("switching to intro scene");
+				holder.addChild(new IntroScene());
 				
 			case "game":
-				trace("switching to game");
+                holder.addChild(new GameScene());
 				
-			case "ending":
-				trace("ending");
+			case "end":
+                holder.addChild(new EndScene());
 		}
-		*/
+	}
+	
+	private function destroyCurrentScene():Void
+	{
+		if(holder.numChildren > 0)
+        {
+            toKill = cast holder.getChildAt(0);
+            toKill.destroy();
+
+            holder.removeChildAt(0);
+        }
 	}
 }

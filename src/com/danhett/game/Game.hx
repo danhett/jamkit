@@ -10,17 +10,17 @@ import com.danhett.audio.AudioManager;
 import com.danhett.debug.Debug;
 import com.danhett.events.GameEvent;
 import com.danhett.scenes.SceneManager;
-import com.danhett.ui.Controls;
+import com.danhett.ui.ControlManager;
 
 class Game extends Sprite 
 {	
 	public var DEBUG:Bool = true;
 	
 	private var prepStep:Int = 0;
-	private var sceneManager:SceneManager;
-	private var controls:Controls;
-	private var audio:AudioManager;
-	private var assets:AssetManager;
+	public var sceneManager:SceneManager;
+	public var controls:ControlManager;
+	public var audio:AudioManager;
+	public var assets:AssetManager;
 		
 	public function new() 
 	{	
@@ -60,7 +60,7 @@ class Game extends Sprite
 	
 	private function createControls():Void
 	{
-		controls = new Controls();
+		controls = new ControlManager();
 		addChild(controls);
 		
 		controls.addEventListener(GameEvent.COMPONENT_READY, updateStep);
@@ -96,6 +96,8 @@ class Game extends Sprite
 		controls.removeEventListener(GameEvent.COMPONENT_FAILED, haltInit);
 		audio.removeEventListener(GameEvent.COMPONENT_READY, updateStep);
 		audio.removeEventListener(GameEvent.COMPONENT_FAILED, haltInit);
+		assets.removeEventListener(GameEvent.COMPONENT_READY, updateStep);
+		assets.removeEventListener(GameEvent.COMPONENT_FAILED, haltInit);
 		
 		createGame();
 	}
