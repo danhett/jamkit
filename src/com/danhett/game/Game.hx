@@ -113,6 +113,8 @@ class Game extends Sprite
 	{
 		Debug.log("Framework ready! Let's do it.");
 		
+		audio.playSound("PowerUp");
+		
 		sceneManager.changeScene("intro");
 	}
 	

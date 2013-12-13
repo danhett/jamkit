@@ -6,10 +6,13 @@ import com.danhett.events.GameEvent;
 import flash.display.Sprite;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
+import flash.media.Sound;
 
 @:bitmap("assets/intro.png") class IntroImage extends BitmapData {}
 @:bitmap("assets/game.png") class GameImage extends BitmapData {}
 @:bitmap("assets/end.png") class EndImage extends BitmapData {}
+	
+@:sound("assets/powerup.mp3") class PowerUp extends Sound {}
 
 class AssetManager extends Sprite 
 {		
@@ -31,5 +34,13 @@ class AssetManager extends Sprite
         var bitmap:Bitmap = new Bitmap( instance );
 
         return bitmap;
+    }
+
+	public function getSound(name:String):Sound
+    {
+        var classReference = Type.resolveClass("com.danhett.assets." + name);
+        var sound:Sound = Type.createInstance(classReference, []);
+
+        return sound;
     }
 }
