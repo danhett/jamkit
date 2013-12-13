@@ -11,7 +11,9 @@
 	
 	<haxelib name="openfl" />
 	
-	<assets path="assets" rename="assets" exclude="openfl.svg" />
+	<library path="assets/test.swf" />
+	
+	<assets path="assets" exclude="openfl.svg" />
 		
 	<icon path="assets/openfl.svg" />
 	

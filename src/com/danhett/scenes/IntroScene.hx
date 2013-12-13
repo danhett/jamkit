@@ -36,4 +36,9 @@ class IntroScene extends Scene
     {
         Game.Instance().sceneManager.changeScene("game");
     }
+
+	override public function destroy():Void
+	{
+		// remove stuff here when the scene is changed
+	}
 }

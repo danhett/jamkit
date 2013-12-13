@@ -16,6 +16,6 @@ class Scene extends Sprite
 	
 	public function destroy():Void
 	{
-		// called when the scene is removed from the stage
+		// called when the scene is removed
 	}
 }

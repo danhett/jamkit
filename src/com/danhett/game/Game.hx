@@ -11,6 +11,7 @@ import com.danhett.debug.Debug;
 import com.danhett.events.GameEvent;
 import com.danhett.scenes.SceneManager;
 import com.danhett.ui.ControlManager;
+import openfl.Assets;
 
 class Game extends Sprite 
 {	
@@ -32,6 +33,9 @@ class Game extends Sprite
 	private function init():Void
 	{	
 		self_reference = this;
+		
+		//var movieClip = Assets.getMovieClip ("test:TestShape");
+		//addChild (movieClip);
 		
 		updateStep();
 	}
