@@ -14,6 +14,6 @@ class Main extends Sprite
 	
 	private function init():Void
 	{
-		addChild(new Game());
+		addChild(new Game(this.stage));
 	}
 }

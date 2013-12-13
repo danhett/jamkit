@@ -2,6 +2,7 @@ package com.danhett.game;
 
 import flash.display.Bitmap;
 import flash.display.BitmapData;
+import flash.display.DisplayObject;
 import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.MouseEvent;
@@ -22,10 +23,13 @@ class Game extends Sprite
 	public var controls:ControlManager;
 	public var audio:AudioManager;
 	public var assets:AssetManager;
+	public var stageRef:DisplayObject;
 		
-	public function new() 
+	public function new(_stage:DisplayObject) 
 	{	
 		super();
+		
+		stageRef = _stage;
 		
 		init();
 	}
@@ -33,9 +37,6 @@ class Game extends Sprite
 	private function init():Void
 	{	
 		self_reference = this;
-		
-		//var movieClip = Assets.getMovieClip ("test:TestShape");
-		//addChild (movieClip);
 		
 		updateStep();
 	}
@@ -64,7 +65,7 @@ class Game extends Sprite
 	
 	private function createControls():Void
 	{
-		controls = new ControlManager();
+		controls = new ControlManager(stageRef); 
 		addChild(controls);
 		
 		controls.addEventListener(GameEvent.COMPONENT_READY, updateStep);
@@ -112,9 +113,7 @@ class Game extends Sprite
 	private function createGame():Void
 	{
 		Debug.log("Framework ready! Let's do it.");
-		
-		audio.playSound("PowerUp");
-		
+				
 		sceneManager.changeScene("intro");
 	}
 	
