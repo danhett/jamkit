@@ -11,8 +11,14 @@ import flash.media.Sound;
 @:bitmap("assets/intro.png") class IntroImage extends BitmapData {}
 @:bitmap("assets/game.png") class GameImage extends BitmapData {}
 @:bitmap("assets/end.png") class EndImage extends BitmapData {}
-	
-@:sound("assets/powerup.mp3") class PowerUp extends Sound {}
+
+@:bitmap("assets/tiles/tile_blue.png") class TileBlue extends BitmapData {}
+@:bitmap("assets/tiles/tile_green.png") class TileGreen extends BitmapData {}
+@:bitmap("assets/tiles/tile_lightblue.png") class TileLightBlue extends BitmapData {}
+@:bitmap("assets/tiles/tile_pink.png") class TilePink extends BitmapData {}
+@:bitmap("assets/tiles/tile_purple.png") class TilePurple extends BitmapData {}
+@:bitmap("assets/tiles/tile_red.png") class TileRed extends BitmapData {}
+@:bitmap("assets/tiles/tile_yellow.png") class TileYellow extends BitmapData {}
 
 class AssetManager extends Sprite 
 {		

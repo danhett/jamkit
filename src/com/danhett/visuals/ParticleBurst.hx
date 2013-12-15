@@ -11,32 +11,42 @@ class ParticleBurst extends Sprite
     // TODO: make these into params when creating the class
     private var particleColour = 0xFF0000;
 	private var maxSpeed:Float = 2;
-	private var fadeSpeed:Float = 0.2;
-	private var total:Int = 50;
+	private var fadeSpeed:Float = 0.15;
+	private var total:Int = 40;
     private var finished:Int = 0;
-	private var particleRange:Float = 50;
+	private var particleRange:Float = 30;
     private var radius:Float = 2.5;
+    private var gravity:Float = 4;
 
     private var holder:MovieClip;
     private var particles:Array<Particle>;
     private var _particle:Particle;
 			
-	public function new() 
+	public function new(colour = 0xFF00FF)
 	{	
 		super();
+
+        this.mouseEnabled = false;
+
+        var _colour = colour;
 
         particles  = new Array<Particle>();
 
         holder = new MovieClip();
+        holder.mouseEnabled = false;
         holder.x = -radius;
         holder.y = -radius;
         addChild(holder);
 
 		for(i in 0...total) 
 		{
-            var particle:Particle = new Particle();
+            var particle:Particle = new Particle(_colour);
+            particle.mouseEnabled = false;
             particle.rotation = Math.random() * 360;
             particle.alpha = Math.random() + 0.3;
+
+            particle.x = (Math.random() * 100) - 50;
+            particle.y = (Math.random() * 100) - 50;
 
             particle.boundary = particleRange;
 
@@ -44,6 +54,7 @@ class ParticleBurst extends Sprite
             particle.speedY = Math.random() * maxSpeed - Math.random() * maxSpeed;
             particle.speedX *= maxSpeed;
             particle.speedY *= maxSpeed;
+            particle.rotationSpeed = Math.random() * 360;
 
             particle.fadeSpeed = (Math.random() * fadeSpeed) * fadeSpeed;
 
@@ -63,7 +74,8 @@ class ParticleBurst extends Sprite
 
             _particle.alpha -= _particle.fadeSpeed;
             _particle.x += _particle.speedX;
-            _particle.y += _particle.speedY;
+            _particle.y += _particle.speedY + gravity;
+            _particle.rotation += _particle.rotationSpeed;
 
             if(_particle.alpha <= 0 && !_particle.finished)
             {
@@ -94,13 +106,14 @@ class Particle extends Sprite
     public var fadeSpeed:Float;
     public var boundary:Float;
     public var finished:Bool = false;
+    public var rotationSpeed:Float;
 
-    public function new()
+    public function new(colour = 0xFF0000)
     {
         super();
 
-        this.graphics.beginFill(0xFF0000);
-        this.graphics.drawRect(-2, -2, 4, 4);
+        this.graphics.beginFill(colour);
+        this.graphics.drawRect(-8, -8, 16, 16);
         this.graphics.endFill();
     }
 }

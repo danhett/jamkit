@@ -5,11 +5,12 @@
 	
 	<app main="com.danhett.Main" path="deploy" file="JamKit" />
 	
-	<window width="800" height="600" fps="60" background="0x000000" />
+	<window width="1024" height="768" fps="60" background="0xdad8d8" />
 	
 	<source path="src" />
 	
 	<haxelib name="openfl" />
+	<haxelib name="swf" />
 	
 	<library path="assets/test.swf" />
 	

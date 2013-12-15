@@ -36,11 +36,11 @@ class ControlManager extends Sprite
 	
 	private function onKeyDown(e:KeyboardEvent):Void
 	{
-		Debug.log("Pressed " + e.keyCode);
+		//Debug.log("Pressed " + e.keyCode);
 	}
 	
 	private function onKeyUp(e:KeyboardEvent):Void
 	{
-		Debug.log("Released " + e.keyCode);
+		//Debug.log("Released " + e.keyCode);
 	}
 }
