@@ -16,7 +16,7 @@ import flash.utils.Object;
 
 class GameScene extends Scene 
 {
-    private var w:Int = 12;
+    private var w:Int = 18;
     private var h:Int = 12;
     private var TILE_WIDTH:Int = 160;
     private var TILE_HEIGHT:Int = 160;
@@ -249,7 +249,7 @@ class GameScene extends Scene
 
     private function removeTiles():Void
     {
-        trace("REMOVING: " + picked);
+
     }
 
 	override public function destroy():Void
