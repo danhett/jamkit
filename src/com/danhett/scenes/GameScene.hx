@@ -23,11 +23,13 @@ class GameScene extends Scene
     private var holder:MovieClip;
     private var bursts:MovieClip;
     private var tiles:Array<String>;
-    private var hitRatio:Float = 1; // hit zone, leave at 1 for vert/hori lock
+    private var hitRatio:Float = 1; // hit zone, leave at 1 for vert/horiz lock
     private var dragging:Bool = false;
     private var clicked:Sprite;
     private var selected:String;
     private var picked:Array<Sprite>;
+    private var board:Array<Array<Sprite>>;
+    private var placeholder:Sprite;
 
 	public function new() 
 	{	
@@ -53,14 +55,20 @@ class GameScene extends Scene
         bursts = new MovieClip();
         addChild(bursts);
 
+        board = new Array<Array<Sprite>>();
+
         for(i in 0...w)
         {
+            board[i] = new Array<Sprite>();
+
             for(j in 0...h)
             {
                 var obj:Object = getRandomTile();
                 var bitmap:Bitmap = obj.tile;
                 var tile:Sprite = new Sprite();
                 tile.name = obj.tileName;
+
+                board[i][j] = tile;
 
                 tile.x = i * TILE_WIDTH;
                 tile.y = j * TILE_HEIGHT;
@@ -205,6 +213,7 @@ class GameScene extends Scene
         {
             t = picked[i];
 
+            // only do the tile removal if we selected more than three
             if(picked.length >= 3)
             {
                 t.alpha = 0;
